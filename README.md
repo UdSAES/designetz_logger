@@ -9,13 +9,13 @@ $ npm install designetz_logger
 ## Usage
 To use the package it needs to be imported via require
 
-```
+```javascript
 const logger = require('designetz_logger')
 ```
 
 The `designetz_logger` package is exported as a single function which is used to create new logger instances. The function takes a single parameter which is the name of the logger.
 Example:
-```
+```javascript
 const log = logger('logger_instance')
 ```
 
@@ -33,7 +33,7 @@ Each function takes three parameters:
 * `error`: An instance of type `Error` with information on the root cause of the event (this parameter is optional)
 
 Example:
-```
+```javascript
 const fs = require('fs-extra')
 const designetz_logger = require('designetz_logger')
 
@@ -53,13 +53,13 @@ log.info('config file successfully read', 30002)
 ```
 
 The output on the console for the above example will either be
-```
+```json
 {"name":"designetz_logger_example","hostname":"somehost","pid":29944,"level":60,"msg":"reading config file failed","code":60001,"time":"2018-05-22T12:25:15.459Z", "error": {}}
 ```
 
 if the config file cannot be loaded, or
 
-```
+```json
 {"name":"designetz_logger_example","hostname":"somehost","pid":29944,"level":30,"msg":"config file successfully read","code":30002,"time":"2018-05-22T12:25:15.459Z"}
 ```
 
