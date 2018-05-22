@@ -60,5 +60,5 @@ function createLogger(name) {
   return lognInstance
 }
 
-exports.createLogger = createLogger
+exports = createLogger
 module.exports = exports
