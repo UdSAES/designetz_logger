@@ -1,6 +1,11 @@
 # designetz_logger
 A tiny node.js package to log events according to the logging conventions in the Designetz project.
 
+![Set of logos](./docs/logos_uds_aes_designetz_bmwi.png)
+
+## License
+See the [LICENSE](./LICENSE) file for license rights and limitations (ISC).
+
 ## Install
 ```
 $ npm install designetz_logger
