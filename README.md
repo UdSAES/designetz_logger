@@ -34,7 +34,7 @@ The logger instance has functions to log events in 6 different levels:
 
 Each function takes three parameters:
 * `msg`: A human readable message of type `string` (this parameter is mandatory)
-* `code`: A machine readable code of type `number` to be filter events (this parameter is mandatory)
+* `code`: A machine readable code of type `number` to filter events (this parameter is mandatory)
 * `error`: An instance of type `Error` with information on the root cause of the event (this parameter is optional)
 
 Example:
