@@ -63,6 +63,33 @@ function createLogger(name) {
     log(10, msg, code, err)
   }
 
+  function any(msg, code, err) {
+    const codeString = code + ''
+
+    switch (codeString[0]) {
+      case '6':
+        fatal(msg, code, err)
+        break;
+      case '5':
+        error(msg, code, err)
+        break;
+      case '4':
+        warn(msg, code, err)
+        break;
+      case '3':
+        info(msg, code, err)
+        break;
+      case '2':
+        debug(msg, code, err)
+        break;
+      case '1':
+        trace(msg, code, err)
+        break;
+      default:
+        throw new Error('invalid code ' + code)
+    }
+  }
+
   const lognInstance = {
     log: log,
     fatal: fatal,
@@ -70,7 +97,8 @@ function createLogger(name) {
     warn: warn,
     info: info,
     debug: debug,
-    trace: trace
+    trace: trace,
+    any: any
   }
 
   return lognInstance
