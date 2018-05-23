@@ -32,12 +32,14 @@ The logger instance has functions to log events in 6 different levels:
 * `debug` (level 20): A noteworthy event for debugging has occured (e.g. a request to a sub-sequent service has been sent)
 * `trace` (level 10): A noteworthy event for tracing has occured (e.g. a auxiliary calculation result has been calculated)
 
+For convenience, the logger instance provides the method `any` which derives the log level automatically based on the first digit of the given code.
+
 Each function takes three parameters:
 * `msg`: A human readable message of type `string` (this parameter is mandatory)
 * `code`: A machine readable code of type `number` to filter events (this parameter is mandatory)
 * `error`: An instance of type `Error` with information on the root cause of the event (this parameter is optional)
 
-Example:
+Example with explicit determination of the log level:
 ```javascript
 const fs = require('fs-extra')
 const designetz_logger = require('designetz_logger')
@@ -57,7 +59,27 @@ try {
 log.info('config file successfully read', 30002)
 ```
 
-The output on the console for the above example will either be
+Example with automatic derivation of the log level:
+```javascript
+const fs = require('fs-extra')
+const designetz_logger = require('designetz_logger')
+
+const PATH_TO_CONFIG_FILE = './config/config_1.json'
+
+const log = designetz_logger('designetz_logger_example')
+
+let configFileContent = null
+try {
+  configFileContent = await fs.readJson(PATH_TO_CONFIG_FILE)
+} catch (error) {
+  log.any('reading config file failed', 60001, error)
+  process.exit(1)
+}
+
+log.any('config file successfully read', 30002)
+```
+
+In both versions of the example the output on the console will either be
 ```json
 {"name":"designetz_logger_example","hostname":"somehost","pid":29944,"level":60,"msg":"reading config file failed","code":60001,"time":"2018-05-22T12:25:15.459Z", "error": {}}
 ```
