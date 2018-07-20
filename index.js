@@ -18,25 +18,40 @@
 const os = require('os')
 const _ = require('lodash')
 
-function createLogger(name) {
+function noop() {
+}
+
+function createLogger(options) {
+  options = _.cloneDeep(options) || {}
+  options.name = options.name || ''
+  options.target = options.target || console.log
+  options.levelFilter = options.levelFilter || 0
+
   const logTemplate = {
-    name: name,
+    name: options.name,
     hostname: os.hostname(),
     pid: process.pid,
   }
+  
+  function setLevelFilter(levelFilter) {
+    options.levelFilter = levelFilter
+  }
 
   function log(level, msg, code, err) {
+    if (level < options.levelFilter) {
+      return
+    }
+
     const entry = JSON.parse(JSON.stringify(logTemplate))
     entry.level = level
     entry.msg = msg
     entry.code = code
 
     if (_.isError(err)) {
-      entry.err = err.toString()
+      entry.err = err.stack
     }
     entry.time = new Date()
-
-    console.log(JSON.stringify(entry))
+    options.target(JSON.stringify(entry))
   }
 
   function fatal(msg, code, err) {

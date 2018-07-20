@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/UdSAES/designetz_logger#readme",
   "dependencies": {
-    "lodash": "^4.17.10"
+    "lodash": "^4.17.10",
+    "mocha": "^5.2.0"
   }
 }
