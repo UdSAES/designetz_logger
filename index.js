@@ -17,6 +17,7 @@
 'use strict'
 const os = require('os')
 const _ = require('lodash')
+const serializeError = require('serialize-error')
 
 function noop() {
 }
@@ -48,7 +49,7 @@ function createLogger(options) {
     entry.code = code
 
     if (_.isError(err)) {
-      entry.err = err.stack
+      entry.err = serializeError(err)
     }
     entry.time = new Date()
     options.target(JSON.stringify(entry))

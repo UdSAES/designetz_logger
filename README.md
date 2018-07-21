@@ -12,17 +12,19 @@ $ npm install designetz_logger
 ```
 
 ## Usage
+### Importing the package
 To use the package it needs to be imported via require
 
 ```javascript
 const createLogger = require('designetz_logger')
 ```
 
+### Creating a logger instance
 The `designetz_logger` package is exported as a single function which is used to create new logger instances. The function takes a single parameter object which can be used to set optional parameters.
 Example:
 ```javascript
 const log = createLogger({
-  name: 'logger1',
+  name: 'nameOfLogger',
   target: console.log,
   levelFilter: 20
 })
@@ -33,6 +35,7 @@ The optional parameters have the following meaning:
 * `target`: the stream the log entry gets written to as serialized JSON object (standard is `console.log` --> log entries are written to STDOUT)
 * `levelFilter`: the inclusive lower threshold for the log level. Log entries with a smaller level will not be written to target (standard is `0` --> everything is logged)
 
+### Writing log entries
 The logger instance has functions to log events in 6 different levels:
 * `fatal` (level 60): A fatal event occured, the application will exit
 * `error` (level 50): A malfunction occured (e.g. an operation could not be completed successfully), but the application will keep running
@@ -89,4 +92,30 @@ The output on STDOUT looks like this
 ```
 
 The properties `name`, `hostname`, `pid`, `level` and `time` are automatically added to the log entry, whereas `msg`, `code` and `error` are the parameters given to the log instance function call.
+
+Where appropriate, an error object (instance of type `Error`) should be provided as third parameter to `fatal`, `error`, `warn`, `info`, `debug`, `trace` and `any`. The error object will be serialized in a way that it includes the stack trace which is very helpful for debugging.
+
+```javascript
+'use strict'
+
+const fs = require('fs')
+const createLogger = require('designetz-logger')
+
+// create logger without assigning log target --> default is STDOUT
+let log = createLogger({
+  name: 'log_to_stdout'
+})
+
+fs.readFile('./some/path/to/essential/config.txt', {encoding: 'utf8'}, (error, text) => {
+  if (error != null) {
+    log.fatal('essential config file could not be loaded', 60010, error)
+    process.exit(1)
+  }
+
+  log.info('essential config file successfully loaded', 30025)
+
+  // do something with config ...
+}}
+```
+
 
