@@ -20,13 +20,13 @@ const createLogger = require('designetz-logger')
 ```
 
 ### Creating a logger instance
-The `designetz_logger` package is exported as a single function which is used to create new logger instances. The function takes a single parameter object which can be used to set optional parameters.
+The `designetz-logger` package is exported as a single function which is used to create new logger instances. The function takes a single parameter object which can be used to set optional parameters.
 Example:
 ```javascript
 const log = createLogger({
   name: 'nameOfLogger',
   target: console.log,
-  levelFilter: 20
+  levelFilter: 0
 })
 ```
 
@@ -127,3 +127,14 @@ In case the log file cannot be loaded, the log entry looks like this:
 ```json
 {"name":"log_to_stdout","hostname":"hostxyz","pid":19991,"level":60,"msg":"essential config file could not be loaded","code":60010,"err":{"errno":-2,"code":"ENOENT","syscall":"open","path":"./some/path/to/essential/config.txt","name":"Error","message":"ENOENT: no such file or directory, open './some/path/to/essential/config.txt'","stack":"Error: ENOENT: no such file or directory, open './some/path/to/essential/config.txt'"},"time":"2018-07-21T14:29:13.378Z"}
 ```
+### Logging to STDERR
+In order to log to `STDERR` indestead of `STDOUT` simply provide `console.error` as attribute `target` for the options parameter when creating the logger instance:
+
+```javascript
+const log = createLogger({
+  name: 'STDERRLogger',
+  target: console.error
+})
+```
+
+All log entries will then be written to `STDERR` instead of `STDOUT`.
