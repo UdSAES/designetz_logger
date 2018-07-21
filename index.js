@@ -1,8 +1,8 @@
-// designetz_logger
+// designetz-logger
 //
 // Copyright 2018 The designetz_logger Developers. See the LICENSE file at
 // the top-level directory of this distribution and at
-// https://github.com/UdSAES/designetz_logger/LICENSE
+// https://github.com/UdSAES/designetz-logger/LICENSE
 //
 // THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
 // REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
@@ -12,7 +12,7 @@
 // OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 // PERFORMANCE OF THIS SOFTWARE.
 //
-// designetz_logger may be freely used and distributed under the ISC license
+// designetz-logger may be freely used and distributed under the ISC license
 
 'use strict'
 const os = require('os')
