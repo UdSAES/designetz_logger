@@ -66,7 +66,7 @@ let log = createLogger({
 log.info('info message with code 30000', 30000)
 ```
 
-The output on STDOUT looks like this
+The output on STDOUT looks like this:
 ```json
 {"name":"log_to_stdout","hostname":"hostxyz","pid":15072,"level":30,"msg":"info message with code 30000","code":30000,"time":"2018-07-21T14:00:31.783Z"}
 ```
@@ -86,36 +86,44 @@ let log = createLogger({
 log.any('info message with code 30000', 30000)
 ```
 
-The output on STDOUT looks like this
+The output on STDOUT looks like this:
 ```json
 {"name":"log_to_stdout","hostname":"hostxyz","pid":15072,"level":30,"msg":"info message with code 30000","code":30000,"time":"2018-07-21T14:00:31.783Z"}
 ```
 
 The properties `name`, `hostname`, `pid`, `level` and `time` are automatically added to the log entry, whereas `msg`, `code` and `error` are the parameters given to the log instance function call.
 
-Where appropriate, an error object (instance of type `Error`) should be provided as third parameter to `fatal`, `error`, `warn`, `info`, `debug`, `trace` and `any`. The error object will be serialized in a way that it includes the stack trace which is very helpful for debugging.
+Where appropriate, an error object (instance of type `Error`) should be provided as third parameter to `fatal`, `error`, `warn`, `info`, `debug`, `trace` and `any`. The error object will be serialized in a way that it includes as much as possible information for debugging:
 
 ```javascript
 'use strict'
 
-const fs = require('fs')
+const {promisify} = require('util')
+const readFile = promisify(require('fs').readFile)
 const createLogger = require('designetz-logger')
 
-// create logger without assigning log target --> default is STDOUT
-let log = createLogger({
-  name: 'log_to_stdout'
-})
+async function main() {
+  let log = createLogger({
+    name: 'log_to_stdout'
+  })
 
-fs.readFile('./some/path/to/essential/config.txt', {encoding: 'utf8'}, (error, text) => {
-  if (error != null) {
+  let fileContent
+
+  try {
+    fileContent = await readFile('./some/path/to/essential/config.txt', {encoding: 'utf8'})
+  } catch (error) {
     log.fatal('essential config file could not be loaded', 60010, error)
     process.exit(1)
   }
-
+  
   log.info('essential config file successfully loaded', 30025)
-
   // do something with config ...
-}}
+}
+
+main()
 ```
 
-
+In case the log file cannot be loaded, the log entry looks like this:
+```json
+{"name":"log_to_stdout","hostname":"hostxyz","pid":19991,"level":60,"msg":"essential config file could not be loaded","code":60010,"err":{"errno":-2,"code":"ENOENT","syscall":"open","path":"./some/path/to/essential/config.txt","name":"Error","message":"ENOENT: no such file or directory, open './some/path/to/essential/config.txt'","stack":"Error: ENOENT: no such file or directory, open './some/path/to/essential/config.txt'"},"time":"2018-07-21T14:29:13.378Z"}
+```
