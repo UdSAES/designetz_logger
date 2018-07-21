@@ -1,4 +1,4 @@
-# designetz_logger
+# designetz-logger
 A tiny node.js package to log events according to the logging conventions in the Designetz project.
 
 ![Set of logos](./docs/logos_uds_aes_designetz_bmwi.png)
@@ -8,7 +8,7 @@ See the [LICENSE](./LICENSE) file for license rights and limitations (ISC).
 
 ## Install
 ```
-$ npm install designetz_logger
+$ npm install designetz-logger
 ```
 
 ## Usage
@@ -16,7 +16,7 @@ $ npm install designetz_logger
 To use the package it needs to be imported via require
 
 ```javascript
-const createLogger = require('designetz_logger')
+const createLogger = require('designetz-logger')
 ```
 
 ### Creating a logger instance
@@ -66,7 +66,7 @@ let log = createLogger({
 log.info('info message with code 30000', 30000)
 ```
 
-The output on STDOUT looks like this:
+The output on `STDOUT` looks like this:
 ```json
 {"name":"log_to_stdout","hostname":"hostxyz","pid":15072,"level":30,"msg":"info message with code 30000","code":30000,"time":"2018-07-21T14:00:31.783Z"}
 ```
@@ -86,7 +86,7 @@ let log = createLogger({
 log.any('info message with code 30000', 30000)
 ```
 
-The output on STDOUT looks like this:
+The output on `STDOUT` looks like this:
 ```json
 {"name":"log_to_stdout","hostname":"hostxyz","pid":15072,"level":30,"msg":"info message with code 30000","code":30000,"time":"2018-07-21T14:00:31.783Z"}
 ```
