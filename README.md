@@ -50,42 +50,36 @@ Each function takes three parameters:
 
 Example with explicit determination of the log level:
 ```javascript
-const fs = require('fs-extra')
-const designetz_logger = require('designetz_logger')
+'use strict'
 
-const PATH_TO_CONFIG_FILE = './config/config_1.json'
+const createLogger = require('designetz-logger')
 
-const log = designetz_logger('designetz_logger_example')
+// create logger without assigning log target --> default is STDOUT
+let log = createLogger({
+  name: 'log_to_stdout'
+})
 
-let configFileContent = null
-try {
-  configFileContent = await fs.readJson(PATH_TO_CONFIG_FILE)
-} catch (error) {
-  log.error('reading config file failed', 60001, error)
-  process.exit(1)
-}
+// explicit log of info message
+log.info('info message with code 30000', 30000)
+```
 
-log.info('config file successfully read', 30002)
+```JSON
+{"name":"log_to_stdout","hostname":"autsys145","pid":15072,"level":30,"msg":"info message with code 30000","code":30000,"time":"2018-07-21T14:00:31.783Z"}
 ```
 
 Example with automatic derivation of the log level:
 ```javascript
-const fs = require('fs-extra')
-const designetz_logger = require('designetz_logger')
+'use strict'
 
-const PATH_TO_CONFIG_FILE = './config/config_1.json'
+const createLogger = require('designetz-logger')
 
-const log = designetz_logger('designetz_logger_example')
+// create logger without assigning log target --> default is STDOUT
+let log = createLogger({
+  name: 'log_to_stdout'
+})
 
-let configFileContent = null
-try {
-  configFileContent = await fs.readJson(PATH_TO_CONFIG_FILE)
-} catch (error) {
-  log.any('reading config file failed', 60001, error)
-  process.exit(1)
-}
-
-log.any('config file successfully read', 30002)
+// implicit log of info message
+log.any('info message with code 30000', 30000)
 ```
 
 In both versions of the example the output on the console will either be
