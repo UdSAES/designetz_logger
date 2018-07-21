@@ -15,14 +15,23 @@ $ npm install designetz_logger
 To use the package it needs to be imported via require
 
 ```javascript
-const logger = require('designetz_logger')
+const createLogger = require('designetz_logger')
 ```
 
-The `designetz_logger` package is exported as a single function which is used to create new logger instances. The function takes a single parameter which is the name of the logger.
+The `designetz_logger` package is exported as a single function which is used to create new logger instances. The function takes a single parameter object which can be used to set optional parameters.
 Example:
 ```javascript
-const log = logger('logger_instance')
+const log = createLogger({
+  name: 'logger1',
+  target: console.log,
+  levelFilter: 20
+})
 ```
+
+The optional parameters have the following meaning:
+* `name`: the value of the name attribute used in each log entry (standard is `''`)
+* `target`: the stream the log entry gets written to as serialized JSON object (standard is `console.log` --> log entries are written to STDOUT)
+* `levelFilter`: the inclusive lower threshold for the log level. Log entries with a smaller level will not be written to target (standard is `0` --> everything is logged)
 
 The logger instance has functions to log events in 6 different levels:
 * `fatal` (level 60): A fatal event occured, the application will exit

@@ -113,7 +113,8 @@ function createLogger(options) {
     info: info,
     debug: debug,
     trace: trace,
-    any: any
+    any: any,
+    setLevelFilter
   }
 
   return lognInstance
