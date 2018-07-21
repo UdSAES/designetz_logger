@@ -63,8 +63,9 @@ let log = createLogger({
 log.info('info message with code 30000', 30000)
 ```
 
-```JSON
-{"name":"log_to_stdout","hostname":"autsys145","pid":15072,"level":30,"msg":"info message with code 30000","code":30000,"time":"2018-07-21T14:00:31.783Z"}
+The output on STDOUT looks like this
+```json
+{"name":"log_to_stdout","hostname":"hostxyz","pid":15072,"level":30,"msg":"info message with code 30000","code":30000,"time":"2018-07-21T14:00:31.783Z"}
 ```
 
 Example with automatic derivation of the log level:
@@ -82,18 +83,10 @@ let log = createLogger({
 log.any('info message with code 30000', 30000)
 ```
 
-In both versions of the example the output on the console will either be
+The output on STDOUT looks like this
 ```json
-{"name":"designetz_logger_example","hostname":"somehost","pid":29944,"level":60,"msg":"reading config file failed","code":60001,"time":"2018-05-22T12:25:15.459Z", "error": {}}
+{"name":"log_to_stdout","hostname":"hostxyz","pid":15072,"level":30,"msg":"info message with code 30000","code":30000,"time":"2018-07-21T14:00:31.783Z"}
 ```
-
-if the config file cannot be loaded, or
-
-```json
-{"name":"designetz_logger_example","hostname":"somehost","pid":29944,"level":30,"msg":"config file successfully read","code":30002,"time":"2018-05-22T12:25:15.459Z"}
-```
-
-if the config has successfully been loaded.
 
 The properties `name`, `hostname`, `pid`, `level` and `time` are automatically added to the log entry, whereas `msg`, `code` and `error` are the parameters given to the log instance function call.
 
