@@ -3,6 +3,7 @@
   "version": "1.0.1",
   "description": "Library for logging in Designetz",
   "main": "index.js",
+  "keywords": ["Designetz", "logging"],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
