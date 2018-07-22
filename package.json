@@ -1,5 +1,5 @@
 {
-  "name": "designetz-logger",
+  "name": "designetz_logger",
   "version": "1.0.0",
   "description": "Library for logging in Designetz",
   "main": "index.js",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/UdSAES/designetz-logger.git"
+    "url": "git+https://github.com/UdSAES/designetz_logger.git"
   },
   "author": "Florian Wagner <florian.wagner@aut.uni-saarland.de>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/UdSAES/designetz-logger/issues"
+    "url": "https://github.com/UdSAES/designetz_logger/issues"
   },
-  "homepage": "https://github.com/UdSAES/designetz-logger#readme",
+  "homepage": "https://github.com/UdSAES/designetz_logger#readme",
   "dependencies": {
     "lodash": "^4.17.10",
     "mocha": "^5.2.0",

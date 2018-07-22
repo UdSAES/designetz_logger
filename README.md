@@ -1,4 +1,4 @@
-# designetz-logger
+# designetz_logger
 A tiny node.js package to log events according to the logging conventions in the Designetz project.
 
 ![Set of logos](./docs/logos_uds_aes_designetz_bmwi.png)
@@ -8,7 +8,7 @@ See the [LICENSE](./LICENSE) file for license rights and limitations (ISC).
 
 ## Install
 ```
-$ npm install designetz-logger
+$ npm install designetz_logger
 ```
 
 ## Usage
@@ -16,11 +16,11 @@ $ npm install designetz-logger
 To use the package it needs to be imported via require
 
 ```javascript
-const createLogger = require('designetz-logger')
+const createLogger = require('designetz_logger')
 ```
 
 ### Creating a logger instance
-The `designetz-logger` package is exported as a single function which is used to create new logger instances. The function takes a single parameter object which can be used to set optional parameters.
+The `designetz_logger` package is exported as a single function which is used to create new logger instances. The function takes a single parameter object which can be used to set optional parameters.
 Example:
 ```javascript
 const log = createLogger({
@@ -55,7 +55,7 @@ Example with explicit determination of the log level:
 ```javascript
 'use strict'
 
-const createLogger = require('designetz-logger')
+const createLogger = require('designetz_logger')
 
 // create logger without assigning log target --> default is STDOUT
 let log = createLogger({
@@ -75,7 +75,7 @@ Example with automatic derivation of the log level:
 ```javascript
 'use strict'
 
-const createLogger = require('designetz-logger')
+const createLogger = require('designetz_logger')
 
 // create logger without assigning log target --> default is STDOUT
 let log = createLogger({
@@ -100,7 +100,7 @@ Where appropriate, an error object (instance of type `Error`) should be provided
 
 const {promisify} = require('util')
 const readFile = promisify(require('fs').readFile)
-const createLogger = require('designetz-logger')
+const createLogger = require('designetz_logger')
 
 async function main() {
   let log = createLogger({
