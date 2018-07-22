@@ -15,7 +15,7 @@
 // designetz_logger may be freely used and distributed under the ISC license
 
 'use strict'
-const createLogger = require('../index')
+const {createLogger} = require('../index')
 
 // create logger without assigning log target --> default is STDOUT
 let log = createLogger({

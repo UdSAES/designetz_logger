@@ -1,6 +1,6 @@
 'use strict'
 
-const createLogger = require('../index.js')
+const {createLogger} = require('../index.js')
 const assert = require('assert')
 
 

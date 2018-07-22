@@ -18,7 +18,7 @@
 
 const {promisify} = require('util')
 const readFile = promisify(require('fs').readFile)
-const createLogger = require('../index')
+const {createLogger} = require('../index')
 
 async function main() {
   let log = createLogger({

@@ -16,11 +16,11 @@ $ npm install designetz_logger
 To use the package it needs to be imported via require
 
 ```javascript
-const createLogger = require('designetz_logger')
+const {createLogger} = require('designetz_logger')
 ```
 
 ### Creating a logger instance
-The `designetz_logger` package is exported as a single function which is used to create new logger instances. The function takes a single parameter object which can be used to set optional parameters.
+The `designetz_logger` package currently exports only single function `createLogger` which is used to create new logger instances. The function takes a single parameter object which can be used to set optional parameters.
 Example:
 ```javascript
 const log = createLogger({
@@ -55,7 +55,7 @@ Example with explicit determination of the log level:
 ```javascript
 'use strict'
 
-const createLogger = require('designetz_logger')
+const {createLogger} = require('designetz_logger')
 
 // create logger without assigning log target --> default is STDOUT
 let log = createLogger({

@@ -121,5 +121,5 @@ function createLogger(options) {
   return lognInstance
 }
 
-exports = createLogger
+exports.createLogger = createLogger
 module.exports = exports
