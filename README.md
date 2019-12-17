@@ -1,6 +1,8 @@
 # designetz_logger
 A tiny node.js package to log events according to the logging conventions in the Designetz project.
 
+> Deprecated: This package is no longer actively developed/maintained and its continued use is discouraged. Use a native logging library instead.
+
 ![Set of logos](./docs/logos_uds_aes_designetz_bmwi.png)
 
 ## License
@@ -115,7 +117,7 @@ async function main() {
     log.fatal('essential config file could not be loaded', 60010, error)
     process.exit(1)
   }
-  
+
   log.info('essential config file successfully loaded', 30025)
   // do something with config ...
 }
