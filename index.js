@@ -19,9 +19,6 @@ const os = require('os')
 const _ = require('lodash')
 const serializeError = require('serialize-error')
 
-function noop() {
-}
-
 function createLogger(options) {
   options = _.cloneDeep(options) || {}
   options.name = options.name || ''
@@ -33,7 +30,7 @@ function createLogger(options) {
     hostname: os.hostname(),
     pid: process.pid,
   }
-  
+
   function setLevelFilter(levelFilter) {
     options.levelFilter = levelFilter
   }
